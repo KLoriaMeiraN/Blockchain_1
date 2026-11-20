@@ -1,0 +1,20 @@
+14:16:58.076 [node1] nó iniciado na porta 5001; pares: ['node2', 'node3']
+14:16:59.579 [node1] iniciando ELEIÇÃO (nós maiores: ['node2', 'node3'])
+14:16:59.579 [node1] -> ELECTION para node2
+14:16:59.583 [node1] <- OK de node2
+14:16:59.583 [node1] -> ELECTION para node3
+14:16:59.583 [node1] <- OK de node3
+14:16:59.583 [node1] aguardando COORDINATOR de um nó maior...
+14:16:59.589 [node1] <- COORDINATOR de node3
+14:16:59.590 [node1] *** COORDENADOR = node3 ***
+14:17:08.609 [node1] !!! líder node3 não respondeu ao HEARTBEAT -> FALHA detectada
+14:17:08.609 [node1] iniciando ELEIÇÃO (nós maiores: ['node2', 'node3'])
+14:17:08.609 [node1] -> ELECTION para node2
+14:17:08.610 [node1] <- OK de node2
+14:17:08.610 [node1] -> ELECTION para node3
+14:17:09.617 [node1] x  node3 não respondeu
+14:17:09.617 [node1] aguardando COORDINATOR de um nó maior...
+14:17:09.619 [node1] <- COORDINATOR de node2
+14:17:09.619 [node1] *** COORDENADOR = node2 *** (sistema recuperado em 1.01 s após detectar a falha)
+14:17:17.645 [node1] <- COORDINATOR de node3
+14:17:17.645 [node1] *** COORDENADOR = node3 ***

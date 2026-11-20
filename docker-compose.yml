@@ -1,0 +1,50 @@
+services:
+  timeserver:
+    image: python:3.12-alpine
+    container_name: timeserver
+    working_dir: /app
+    volumes: [".:/app"]
+    environment:
+      PYTHONUNBUFFERED: "1"
+      TIME_SERVER_PORT: "6000"
+    command: python cristian.py server
+
+  node1:
+    image: python:3.12-alpine
+    container_name: node1
+    working_dir: /app
+    volumes: [".:/app"]
+    depends_on: [timeserver]
+    environment: &common
+      PYTHONUNBUFFERED: "1"
+      TIME_SERVER_HOST: timeserver
+      TIME_SERVER_PORT: "6000"
+      PORT: "5000"
+      PEERS: "1=node1:5000,2=node2:5000,3=node3:5000"
+      NODE_ID: "1"
+      CLOCK_OFFSET: "2.5"
+    command: sh -c "python cristian.py client && python bully.py"
+
+  node2:
+    image: python:3.12-alpine
+    container_name: node2
+    working_dir: /app
+    volumes: [".:/app"]
+    depends_on: [timeserver]
+    environment:
+      <<: *common
+      NODE_ID: "2"
+      CLOCK_OFFSET: "-1.8"
+    command: sh -c "python cristian.py client && python bully.py"
+
+  node3:
+    image: python:3.12-alpine
+    container_name: node3
+    working_dir: /app
+    volumes: [".:/app"]
+    depends_on: [timeserver]
+    environment:
+      <<: *common
+      NODE_ID: "3"
+      CLOCK_OFFSET: "0.7"
+    command: sh -c "python cristian.py client && python bully.py"

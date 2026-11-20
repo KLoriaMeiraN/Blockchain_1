@@ -1,0 +1,12 @@
+14:16:58.088 [node3] nó iniciado na porta 5003; pares: ['node1', 'node2']
+14:16:59.582 [node3] <- ELECTION de node2; -> OK
+14:16:59.583 [node3] iniciando ELEIÇÃO (nós maiores: nenhum)
+14:16:59.583 [node3] *** COORDENADOR = node3 ***
+14:16:59.583 [node3] -> COORDINATOR para node1
+14:16:59.583 [node3] <- ELECTION de node1; -> OK
+14:16:59.590 [node3] -> COORDINATOR para node2
+14:17:16.143 [node3] nó iniciado na porta 5003; pares: ['node1', 'node2']
+14:17:17.645 [node3] iniciando ELEIÇÃO (nós maiores: nenhum)
+14:17:17.645 [node3] *** COORDENADOR = node3 ***
+14:17:17.645 [node3] -> COORDINATOR para node1
+14:17:17.645 [node3] -> COORDINATOR para node2

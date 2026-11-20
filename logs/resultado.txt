@@ -1,0 +1,112 @@
+======================================================================
+PARTE 1 - SINCRONIZAÇÃO DE RELÓGIOS (CRISTIAN)
+======================================================================
+[node1] ===== Sincronização de Cristian =====
+[node1] desvio inicial do relógio local: +2.500000 s
+[node1] rodada 1: T0=1795195017.556288 Tserv=1795195015.133295 T1=1795195017.659346 RTT= 103.06 ms  ajuste=-2.474522 s
+[node1] rodada 2: T0=1795195017.659346 Tserv=1795195015.258853 T1=1795195017.822210 RTT= 162.86 ms  ajuste=-2.481925 s
+[node1] rodada 3: T0=1795195017.822210 Tserv=1795195015.437370 T1=1795195018.010615 RTT= 188.40 ms  ajuste=-2.479042 s
+[node1] rodada 4: T0=1795195018.010615 Tserv=1795195015.581712 T1=1795195018.177360 RTT= 166.75 ms  ajuste=-2.512275 s
+[node1] rodada 5: T0=1795195018.177360 Tserv=1795195015.753678 T1=1795195018.273344 RTT=  95.98 ms  ajuste=-2.471674 s
+[node1] melhor amostra: RTT=95.98 ms (incerteza ±47.99 ms)
+[node1] diferença ANTES :  +2500.000 ms
+[node1] diferença DEPOIS:    +28.326 ms
+[node1] ======================================
+[node2] ===== Sincronização de Cristian =====
+[node2] desvio inicial do relógio local: -1.800000 s
+[node2] rodada 1: T0=1795195014.409008 Tserv=1795195016.292991 T1=1795195014.538179 RTT= 129.17 ms  ajuste=+1.819398 s
+[node2] rodada 2: T0=1795195014.538179 Tserv=1795195016.422876 T1=1795195014.682927 RTT= 144.75 ms  ajuste=+1.812323 s
+[node2] rodada 3: T0=1795195014.682927 Tserv=1795195016.561301 T1=1795195014.827441 RTT= 144.51 ms  ajuste=+1.806118 s
+[node2] rodada 4: T0=1795195014.827441 Tserv=1795195016.702612 T1=1795195014.923719 RTT=  96.28 ms  ajuste=+1.827032 s
+[node2] rodada 5: T0=1795195014.923719 Tserv=1795195016.789833 T1=1795195015.013698 RTT=  89.98 ms  ajuste=+1.821125 s
+[node2] melhor amostra: RTT=89.98 ms (incerteza ±44.99 ms)
+[node2] diferença ANTES :  -1800.000 ms
+[node2] diferença DEPOIS:    +21.125 ms
+[node2] ======================================
+[node3] ===== Sincronização de Cristian =====
+[node3] desvio inicial do relógio local: +0.700000 s
+[node3] rodada 1: T0=1795195017.950565 Tserv=1795195017.302447 T1=1795195018.073861 RTT= 123.30 ms  ajuste=-0.709766 s
+[node3] rodada 2: T0=1795195018.073861 Tserv=1795195017.416720 T1=1795195018.162845 RTT=  88.98 ms  ajuste=-0.701633 s
+[node3] rodada 3: T0=1795195018.162845 Tserv=1795195017.519851 T1=1795195018.242252 RTT=  79.41 ms  ajuste=-0.682697 s
+[node3] rodada 4: T0=1795195018.242252 Tserv=1795195017.564541 T1=1795195018.292805 RTT=  50.55 ms  ajuste=-0.702988 s
+[node3] rodada 5: T0=1795195018.292805 Tserv=1795195017.615991 T1=1795195018.338652 RTT=  45.85 ms  ajuste=-0.699738 s
+[node3] melhor amostra: RTT=45.85 ms (incerteza ±22.92 ms)
+[node3] diferença ANTES :   +700.000 ms
+[node3] diferença DEPOIS:     +0.262 ms
+[node3] ======================================
+
+======================================================================
+PARTE 2 - ELEIÇÃO DE COORDENADOR (BULLY)
+======================================================================
+14:16:57.673 [RUNNER] subindo node1, node2, node3
+14:16:58.076 [node1] nó iniciado na porta 5001; pares: ['node2', 'node3']
+14:16:58.076 [node2] nó iniciado na porta 5002; pares: ['node1', 'node3']
+14:16:58.088 [node3] nó iniciado na porta 5003; pares: ['node1', 'node2']
+14:16:59.579 [node1] iniciando ELEIÇÃO (nós maiores: ['node2', 'node3'])
+14:16:59.579 [node1] -> ELECTION para node2
+14:16:59.579 [node2] iniciando ELEIÇÃO (nós maiores: ['node3'])
+14:16:59.579 [node2] -> ELECTION para node3
+14:16:59.582 [node3] <- ELECTION de node2; -> OK
+14:16:59.583 [node1] <- OK de node2
+14:16:59.583 [node1] -> ELECTION para node3
+14:16:59.583 [node1] <- OK de node3
+14:16:59.583 [node1] aguardando COORDINATOR de um nó maior...
+14:16:59.583 [node2] <- ELECTION de node1; -> OK
+14:16:59.583 [node2] <- OK de node3
+14:16:59.583 [node2] aguardando COORDINATOR de um nó maior...
+14:16:59.583 [node3] iniciando ELEIÇÃO (nós maiores: nenhum)
+14:16:59.583 [node3] *** COORDENADOR = node3 ***
+14:16:59.583 [node3] -> COORDINATOR para node1
+14:16:59.583 [node3] <- ELECTION de node1; -> OK
+14:16:59.589 [node1] <- COORDINATOR de node3
+14:16:59.590 [node1] *** COORDENADOR = node3 ***
+14:16:59.590 [node3] -> COORDINATOR para node2
+14:16:59.604 [node2] <- COORDINATOR de node3
+14:16:59.604 [node2] *** COORDENADOR = node3 ***
+14:17:05.701 [RUNNER] >>> SIMULANDO FALHA: encerrando node3 (líder)
+14:17:08.609 [node1] !!! líder node3 não respondeu ao HEARTBEAT -> FALHA detectada
+14:17:08.609 [node1] iniciando ELEIÇÃO (nós maiores: ['node2', 'node3'])
+14:17:08.609 [node1] -> ELECTION para node2
+14:17:08.610 [node1] <- OK de node2
+14:17:08.610 [node1] -> ELECTION para node3
+14:17:08.610 [node2] <- ELECTION de node1; -> OK
+14:17:08.613 [node2] iniciando ELEIÇÃO (nós maiores: ['node3'])
+14:17:08.613 [node2] -> ELECTION para node3
+14:17:08.637 [node2] !!! líder node3 não respondeu ao HEARTBEAT -> FALHA detectada
+14:17:09.617 [node1] x  node3 não respondeu
+14:17:09.617 [node1] aguardando COORDINATOR de um nó maior...
+14:17:09.617 [node2] x  node3 não respondeu
+14:17:09.617 [node2] *** COORDENADOR = node2 *** (sistema recuperado em 0.98 s após detectar a falha)
+14:17:09.617 [node2] -> COORDINATOR para node1
+14:17:09.619 [node1] <- COORDINATOR de node2
+14:17:09.619 [node1] *** COORDENADOR = node2 *** (sistema recuperado em 1.01 s após detectar a falha)
+14:17:09.619 [node2] -> COORDINATOR para node3
+14:17:15.702 [RUNNER] >>> node3 voltando
+14:17:16.143 [node3] nó iniciado na porta 5003; pares: ['node1', 'node2']
+14:17:17.645 [node1] <- COORDINATOR de node3
+14:17:17.645 [node1] *** COORDENADOR = node3 ***
+14:17:17.645 [node3] iniciando ELEIÇÃO (nós maiores: nenhum)
+14:17:17.645 [node3] *** COORDENADOR = node3 ***
+14:17:17.645 [node3] -> COORDINATOR para node1
+14:17:17.645 [node3] -> COORDINATOR para node2
+14:17:17.648 [node2] <- COORDINATOR de node3
+14:17:17.649 [node2] *** COORDENADOR = node3 ***
+14:17:23.719 [RUNNER] fim do experimento
+
+======================================================================
+RESUMO
+======================================================================
+mensagens ELECTION enviadas   : 6
+respostas OK recebidas        : 4
+mensagens COORDINATOR enviadas: 6
+14:16:59.583 [node3] *** COORDENADOR = node3 ***
+14:16:59.590 [node1] *** COORDENADOR = node3 ***
+14:16:59.604 [node2] *** COORDENADOR = node3 ***
+14:17:05.701 [RUNNER] >>> SIMULANDO FALHA: encerrando node3 (líder)
+14:17:08.609 [node1] !!! líder node3 não respondeu ao HEARTBEAT -> FALHA detectada
+14:17:08.637 [node2] !!! líder node3 não respondeu ao HEARTBEAT -> FALHA detectada
+14:17:09.617 [node2] *** COORDENADOR = node2 *** (sistema recuperado em 0.98 s após detectar a falha)
+14:17:09.619 [node1] *** COORDENADOR = node2 *** (sistema recuperado em 1.01 s após detectar a falha)
+14:17:17.645 [node1] *** COORDENADOR = node3 ***
+14:17:17.645 [node3] *** COORDENADOR = node3 ***
+14:17:17.649 [node2] *** COORDENADOR = node3 ***
